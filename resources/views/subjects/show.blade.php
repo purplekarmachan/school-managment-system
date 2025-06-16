@@ -7,6 +7,7 @@
 
 @section('header-actions')
     <div class="flex items-center space-x-3">
+        @if(auth()->user()->isAdmin())
         <a href="{{ route('subjects.edit', $subject->id) }}" 
            class="group bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-150 ease-in-out shadow-md hover:shadow-lg flex items-center space-x-2">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -14,6 +15,7 @@
             </svg>
             <span>Edit Subject</span>
         </a>
+        @endif
         <a href="{{ route('subjects.index') }}" 
            class="group bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-150 ease-in-out shadow-md hover:shadow-lg flex items-center space-x-2">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">

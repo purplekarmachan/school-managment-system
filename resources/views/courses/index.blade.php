@@ -5,6 +5,7 @@
 @section('header-title', 'Courses')
 @section('header-subtitle', 'Manage your courses')
 
+@if(auth()->user()->isAdmin())
 @section('header-actions')
     <a href="{{ route('courses.create') }}" 
        class="group bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-150 ease-in-out shadow-md hover:shadow-lg flex items-center space-x-2">
@@ -14,6 +15,7 @@
         </svg>
     </a>
 @endsection
+@endif
 
 @section('content')
     <div class="overflow-x-auto">
@@ -45,6 +47,7 @@
                                 </svg>
                                 View
                             </a>
+                            @if(auth()->user()->isAdmin())
                             <a href="{{ route('courses.edit', $course->id) }}" 
                                class="inline-flex items-center px-3 py-1.5 bg-yellow-100 text-yellow-700 rounded-lg hover:bg-yellow-200 transition-all duration-150 ease-in-out transform hover:scale-105">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -64,6 +67,7 @@
                                     Delete
                                 </button>
                             </form>
+                            @endif
                         </td>
                     </tr>
                 @empty
