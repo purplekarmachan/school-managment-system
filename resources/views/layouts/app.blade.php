@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title', config('app.name', 'Laravel'))</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -21,17 +21,28 @@
         @include('layouts.navigation')
 
         <!-- Page Heading -->
-        @isset($header)
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
+        <header class="bg-white shadow">
+            <div class="max-w-7xl mx-auto py-4 sm:py-6 px-4 sm:px-6 lg:px-8">
+                <div
+                    class="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0">
+                    <div>
+                        <h2 class="font-semibold text-lg sm:text-xl text-gray-800 leading-tight">
+                            @yield('header-title')
+                        </h2>
+                        <p class="mt-1 text-sm text-gray-600">
+                            @yield('header-subtitle')
+                        </p>
+                    </div>
+                    <div class="w-full sm:w-auto">
+                        @yield('header-actions')
+                    </div>
                 </div>
-            </header>
-        @endisset
+            </div>
+        </header>
 
         <!-- Page Content -->
-        <main class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <main class="py-6 sm:py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 @yield('content')
             </div>
         </main>
